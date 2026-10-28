@@ -1,0 +1,4 @@
+# Configuración activa: cuentas, claves, ubicación e históricos.
+/data/
+/backups/
+/.env

@@ -1,0 +1,42 @@
+# Copiar una sola vez a data/homeassistant/configuration.yaml.
+# Servicios explícitos para esta prueba por red. No cargar default_config:
+# activaría Bluetooth/USB aunque no se hayan habilitado en el contenedor.
+config:
+frontend:
+backup:
+system_health:
+assist_pipeline:
+cloud:
+conversation:
+dhcp:
+energy:
+file:
+go2rtc:
+history:
+homeassistant_alerts:
+logbook:
+media_source:
+mobile_app:
+my:
+ssdp:
+stream:
+sun:
+usage_prediction:
+webhook:
+zeroconf:
+
+homeassistant:
+  name: DomotiK
+  time_zone: America/Santiago
+  unit_system: metric
+  currency: CLP
+  country: CL
+
+# Limita días de retención, no establece una cuota de disco.
+recorder:
+  purge_keep_days: 7
+  auto_purge: true
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml

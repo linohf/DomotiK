@@ -1,0 +1,27 @@
+name: domotik
+
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:2026.10.4
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: America/Santiago
+    volumes:
+      - ./data/homeassistant:/config
+    stop_grace_period: 60s
+    healthcheck:
+      test:
+        - CMD
+        - python3
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8123/', timeout=10).close()"
+      interval: 30s
+      timeout: 15s
+      start_period: 120s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
